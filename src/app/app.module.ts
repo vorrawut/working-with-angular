@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { IncomeComponent } from './components/income/income.component';
 import { OutcomeComponent } from './components/outcome/outcome.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { AddIncomeComponent } from './components/income/add-income/add-income.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     IncomeComponent,
-    OutcomeComponent
+    OutcomeComponent,
+    AddIncomeComponent
   ],
   imports: [
     BrowserModule,
