@@ -1,6 +1,6 @@
 export class Income {
   id: string;
   date: string;
-  name: string;
+  type: string;
   price: number;
 }

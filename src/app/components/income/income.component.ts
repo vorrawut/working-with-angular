@@ -28,13 +28,18 @@ export class IncomeComponent implements OnInit {
       {
         id: '1',
         date: '14/11/2019',
-        name: 'เงินเดือน',
+        type: 'งานประจำ',
         price: 150000
       },
       {
-        id: '1',
+        id: '2',
         date: '14/10/2019',
-        name: 'เงินเดือน',
+        type: 'งานเสริม',
+        price: 150000
+      }, {
+        id: '3',
+        date: '14/10/2019',
+        type: 'รายได้จากการลงทุน',
         price: 150000
       }
     ];
