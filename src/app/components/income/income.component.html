@@ -24,36 +24,48 @@
   </div>
 
   <div class="container">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">ประเภท</th>
-          <th scope="col">จำนวน</th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>งานประจำ</td>
-          <td>2000</td>
-          <td><button>แก้ไข</button><button>ลบ</button></td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>งานประจำ</td>
-          <td>100</td>
-          <td><button>แก้ไข</button><button>ลบ</button></td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>งานเสริม</td>
-          <td>400</td>
-          <td><button>แก้ไข</button><button>ลบ</button></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="row">
+      <div class="col-sm" style="display: block;">
+        <canvas
+          baseChart
+          [data]="doughnutChartData"
+          [labels]="doughnutChartLabels"
+          [chartType]="doughnutChartType"
+        >
+        </canvas>
+      </div>
+
+      <table class="table col-sm">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ประเภท</th>
+            <th scope="col">จำนวน</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>งานประจำ</td>
+            <td>2000</td>
+            <td><button>แก้ไข</button><button>ลบ</button></td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>งานประจำ</td>
+            <td>100</td>
+            <td><button>แก้ไข</button><button>ลบ</button></td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>งานเสริม</td>
+            <td>400</td>
+            <td><button>แก้ไข</button><button>ลบ</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <footer>
       © ODDS
