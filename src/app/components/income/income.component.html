@@ -48,30 +48,23 @@
       <table class="table col-sm">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">ประเภท</th>
-            <th scope="col">จำนวน</th>
+            <th scope="col">ลำดับ</th>
+            <th scope="col">วันที่</th>
+            <th scope="col">รายการ</th>
+            <th scope="col">ราคา</th>
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngFor="let data of income">
           <tr>
-            <th scope="row">1</th>
-            <td>งานประจำ</td>
-            <td>2000</td>
-            <td><button>แก้ไข</button><button>ลบ</button></td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>งานประจำ</td>
-            <td>100</td>
-            <td><button>แก้ไข</button><button>ลบ</button></td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>งานเสริม</td>
-            <td>400</td>
-            <td><button>แก้ไข</button><button>ลบ</button></td>
+            <th scope="row">{{data.id}}</th>
+            <td>{{data.date}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.price}}</td>
+            <td>
+              <button>แก้ไข</button>
+              <button>ลบ</button>
+            </td>
           </tr>
         </tbody>
       </table>

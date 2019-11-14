@@ -19,11 +19,26 @@ export class IncomeComponent implements OnInit {
   public doughnutChartData: MultiDataSet = [[1000, 200, 300]];
   public doughnutChartType: ChartType = 'doughnut';
   modalRef: BsModalRef;
-  income: Income;
+  income: Income[];
 
   constructor(private modalService: BsModalService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.income = [
+      {
+        id: '1',
+        date: '14/11/2019',
+        name: 'เงินเดือน',
+        price: 150000
+      },
+      {
+        id: '1',
+        date: '14/10/2019',
+        name: 'เงินเดือน',
+        price: 150000
+      }
+    ];
+  }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
