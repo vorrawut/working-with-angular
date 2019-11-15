@@ -32,12 +32,18 @@ export class OutcomeComponent implements OnInit {
         type: 'ค่าอาหาร'
       },
       {
-        id: '1',
+        id: '2',
         date: '14/11/2019',
         name: 'ซื้อข้าวเที่ยง',
         price: 65,
         type: 'ค่าอาหาร'
-
+      },
+      {
+        id: '2',
+        date: '14/11/2019',
+        name: 'ซื้อข้าวเที่ยง',
+        price: 65,
+        type: 'ค่าอาหาร'
       }
     ];
   }

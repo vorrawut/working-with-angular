@@ -27,7 +27,8 @@
               type="text"
               placeholder="วันที่"
               class="form-control"
-              bsDatepicker/>
+              bsDatepicker
+            />
           </div>
         </div>
 
@@ -61,7 +62,6 @@
         >
         </canvas>
       </div>
-
       <table class="table col-xs-7 col-sm-7 col-lg-7">
         <thead>
           <tr>
@@ -75,10 +75,10 @@
         <tbody>
           <tr *ngFor="let data of income">
             <th scope="row">{{ data.id }}</th>
-            <td>{{ data.date | date:'d/M/yyyy' }}</td>
+            <td>{{ data.date | date: 'd/M/yyyy' }}</td>
             <td>{{ data.incomeGroupName }}</td>
             <td>{{ data.amount }}</td>
-            <td>
+            <td class="td-button">
               <button type="button" class="btn btn-primary">แก้ไข</button>
               <button type="button" class="btn btn-danger">ลบ</button>
             </td>

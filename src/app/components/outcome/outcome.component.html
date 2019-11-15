@@ -40,31 +40,32 @@
           baseChart
           [data]="doughnutChartData"
           [labels]="doughnutChartLabels"
-          [chartType]="doughnutChartType">
+          [chartType]="doughnutChartType"
+        >
         </canvas>
       </div>
 
       <table class="table col-xs-7 col-sm-7 col-lg-7">
         <thead>
           <tr>
-              <th scope="col">ลำดับ</th>
-              <th scope="col">วันที่</th>
-              <th scope="col">ประเภท</th>
-              <th scope="col">รายการ</th>
-              <th scope="col">ราคา</th>
-              <th scope="col"></th>
+            <th scope="col">ลำดับ</th>
+            <th scope="col">วันที่</th>
+            <th scope="col">ประเภท</th>
+            <th scope="col">รายการ</th>
+            <th scope="col">ราคา</th>
+            <th scope="col"></th>
           </tr>
         </thead>
-        <tbody *ngFor="let data of outcome">
-          <tr>
-            <th scope="row">{{data.id}}</th>
-            <td>{{data.date}}</td>
-            <td>{{data.type}}</td>
-            <td>{{data.name}}</td>
-            <td>{{data.price}}</td>
+        <tbody>
+          <tr *ngFor="let data of outcome">
+            <th scope="row">{{ data.id }}</th>
+            <td>{{ data.date }}</td>
+            <td>{{ data.type }}</td>
+            <td>{{ data.name }}</td>
+            <td>{{ data.price }}</td>
             <td>
-                <button type="button" class="btn btn-primary">แก้ไข</button>
-                <button type="button" class="btn btn-danger">ลบ</button>
+              <button type="button" class="btn btn-primary">แก้ไข</button>
+              <button type="button" class="btn btn-danger">ลบ</button>
             </td>
           </tr>
         </tbody>
