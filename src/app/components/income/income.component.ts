@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ChartType } from 'chart.js';
 import { Label, MultiDataSet } from 'ng2-charts';
-import { Income } from 'src/app/models/income/income';
+import { Income, IncomeRequest } from 'src/app/models/income/income';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { IncomeService } from 'src/app/services/income/income.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -41,8 +41,16 @@ export class IncomeComponent implements OnInit {
     });
   }
 
-  onSubmit(form: FormGroup) {
-    console.log(form.value);
+  onSubmit() {
+    const makeData = {
+      userId: 13,
+      incomeGroupId: this.incomeForm.controls.incomeGroupId.value,
+      amount: this.incomeForm.controls.amount.value,
+      date: this.incomeForm.controls.date.value
+    } as IncomeRequest;
+    this.incomeService.saveIncome(makeData).subscribe(_ => {
+      console.log('success');
+    });
   }
 
   private getIncomeGroup() {

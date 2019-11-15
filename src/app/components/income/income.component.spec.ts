@@ -1,10 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
 import { IncomeComponent } from './income.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { IncomeService } from 'src/app/services/income/income.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
-import { Income } from 'src/app/models/income/income';
+import { Income, IncomeRequest } from 'src/app/models/income/income';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IncomeGroup } from 'src/app/models/income-group';
 
@@ -113,6 +113,38 @@ describe('IncomeComponent', () => {
   it('should set empty in incomeGroupId form', () => {
     component.ngOnInit();
     expect(component.incomeForm.controls.incomeGroupId.value).toBe('');
+  });
+
+  it('should update from when form changes', fakeAsync(() => {
+    const data = {
+      date: '10/12/2019',
+      amount: 100,
+      incomeGroupId: 1
+    };
+    component.incomeForm.controls.date.setValue(data.date);
+    component.incomeForm.controls.amount.setValue(data.amount);
+    component.incomeForm.controls.incomeGroupId.setValue(data.incomeGroupId);
+    expect(component.incomeForm.value).toEqual(data);
+  }));
+
+  it('should call save income service with data for save when call onSubmit', () => {
+    spyOn(incomeService, 'saveIncome').and.returnValue(of());
+    const data = {
+      date: '10/12/2019',
+      amount: 100,
+      incomeGroupId: 1
+    };
+    const makeData = {
+      userId: 13,
+      incomeGroupId: data.incomeGroupId,
+      amount: data.amount,
+      date: data.date
+    } as IncomeRequest;
+    component.incomeForm.controls.date.setValue(data.date);
+    component.incomeForm.controls.amount.setValue(data.amount);
+    component.incomeForm.controls.incomeGroupId.setValue(data.incomeGroupId);
+    component.onSubmit();
+    expect(incomeService.saveIncome).toHaveBeenCalledWith(makeData);
   });
 
 });

@@ -46,7 +46,7 @@ describe('IncomeService', () => {
       userId: 13,
       incomeGroupId: 1,
       amount: 100,
-      date: '10/12/2019'
+      date: '1/21/2019'
     } as IncomeRequest;
     service.saveIncome(data).subscribe();
 
