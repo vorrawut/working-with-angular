@@ -5,6 +5,7 @@ import { IncomeService } from 'src/app/services/income/income.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
 import { Income } from 'src/app/models/income/income';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('IncomeComponent', () => {
   let component: IncomeComponent;
@@ -13,7 +14,7 @@ describe('IncomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ModalModule.forRoot(), HttpClientTestingModule],
+      imports: [ModalModule.forRoot(), HttpClientTestingModule, ReactiveFormsModule],
       declarations: [IncomeComponent]
     }).compileComponents();
   }));
