@@ -26,6 +26,7 @@
             <input
               type="text"
               placeholder="วันที่"
+              formControlName="date"
               class="form-control"
               bsDatepicker
             />
@@ -33,9 +34,15 @@
         </div>
 
         <div class="form-group">
-          <select id="incomeGroupId" formControlName="incomeGroupId" class="form-control">
+          <select
+            id="incomeGroupId"
+            formControlName="incomeGroupId"
+            class="form-control"
+          >
             <option value="" selected>กรุณาเลือกประเภทเงินเดือน</option>
-             <option *ngFor="let data of incomeGroup" [value]="data.id" >{{ data.name }}</option> 
+            <option *ngFor="let data of incomeGroup" [value]="data.id">{{
+              data.name
+            }}</option>
           </select>
         </div>
 
