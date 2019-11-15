@@ -8,6 +8,7 @@ import { OutcomeComponent } from './components/outcome/outcome.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AddIncomeComponent } from './components/income/add-income/add-income.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     ChartsModule,
     ModalModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
