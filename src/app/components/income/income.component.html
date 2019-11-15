@@ -2,18 +2,9 @@
   <h2>รายรับ</h2>
 
   <div class="card-container">
-    <div class="card card-small" (click)="openModal(template)">
-      <svg
-        class="material-icons"
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-      >
-        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-      </svg>
-      <span>เพิ่มรายรับ</span>
-    </div>
+      <div class="card card-small">
+          เพิ่มรายรับ
+      </div>
   </div>
 
   <ng-template #template>
@@ -29,9 +20,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <form>
 
-      </form>
     </div>
   </ng-template>
 
@@ -61,8 +50,8 @@
           <tr>
             <th scope="row">{{data.id}}</th>
             <td>{{data.date}}</td>
-            <td>{{data.type}}</td>
-            <td>{{data.price}}</td>
+            <td>{{data.incomeGroupName}}</td>
+            <td>{{data.amount}}</td>
             <td>
               <button type="button" class="btn btn-primary">แก้ไข</button>
               <button type="button" class="btn btn-danger">ลบ</button>

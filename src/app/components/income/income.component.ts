@@ -27,20 +27,23 @@ export class IncomeComponent implements OnInit {
     this.income = [
       {
         id: '1',
+        incomeGroupId: 1,
+        incomeGroupName: 'งานประจำ',
         date: '14/11/2019',
-        type: 'งานประจำ',
-        price: 150000
+        amount: 150000
       },
       {
         id: '2',
+        incomeGroupId: 2,
+        incomeGroupName: 'งานเสริม',
         date: '14/10/2019',
-        type: 'งานเสริม',
-        price: 150000
+        amount: 150000
       }, {
         id: '3',
+        incomeGroupId: 3,
+        incomeGroupName: 'รายได้จากการลงทุน',
         date: '14/10/2019',
-        type: 'รายได้จากการลงทุน',
-        price: 150000
+        amount: 150000
       }
     ];
   }
