@@ -4,6 +4,7 @@ import { Label, MultiDataSet } from 'ng2-charts';
 import { Income } from 'src/app/models/income/income';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { HttpClient } from '@angular/common/http';
+import { IncomeService } from 'src/app/services/income/income.service';
 
 @Component({
   selector: 'app-income',
@@ -22,32 +23,15 @@ export class IncomeComponent implements OnInit {
   modalRef: BsModalRef;
   income: Income[];
 
-  constructor(private modalService: BsModalService) {}
+  constructor(private modalService: BsModalService, private incomeService: IncomeService) {}
 
   ngOnInit() {
 
-    this.income = [
-      {
-        id: '1',
-        incomeGroupId: 1,
-        incomeGroupName: 'งานประจำ',
-        date: '14/11/2019',
-        amount: 150000
-      },
-      {
-        id: '2',
-        incomeGroupId: 2,
-        incomeGroupName: 'งานเสริม',
-        date: '14/10/2019',
-        amount: 150000
-      }, {
-        id: '3',
-        incomeGroupId: 3,
-        incomeGroupName: 'รายได้จากการลงทุน',
-        date: '14/10/2019',
-        amount: 150000
-      }
-    ];
+    const income$ = this.incomeService.getIncomeByUserId();
+    income$.subscribe(income => {
+      this.income = income;
+    });
+
   }
 
   openModal(template: TemplateRef<any>) {

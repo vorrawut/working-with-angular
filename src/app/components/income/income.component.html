@@ -57,8 +57,8 @@
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody *ngFor="let data of income">
-          <tr>
+        <tbody>
+          <tr *ngFor="let data of income">
             <th scope="row">{{data.id}}</th>
             <td>{{data.date}}</td>
             <td>{{data.incomeGroupName}}</td>
