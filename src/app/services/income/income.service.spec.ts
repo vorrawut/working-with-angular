@@ -1,12 +1,16 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed } from "@angular/core/testing";
 
-import { IncomeService } from './income.service';
+import { IncomeService } from "./income.service";
 
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController
+} from "@angular/common/http/testing";
 
-describe('IncomeService', () => {
+describe("IncomeService", () => {
   let service: IncomeService;
   let httpTestingController: HttpTestingController;
+  let expectedUrl: string;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -14,30 +18,24 @@ describe('IncomeService', () => {
     });
     service = TestBed.inject(IncomeService);
     httpTestingController = TestBed.get(HttpTestingController);
-
+    expectedUrl = "http://103.74.254.157:9003/income/id/1";
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return url for get income', ()=> {
-
+  it("should return url for get income", () => {
     const incomeUrl = service.getIncomeByUserIdUrl;
 
-    expect(incomeUrl).toBe('http://103.74.254.157:9003/income/id/1');
-
+    expect(incomeUrl).toBe(expectedUrl);
   });
 
-  it('should call GET method', () => {
-
+  it("should call GET method", () => {
     service.getIncomeByUserId().subscribe();
 
-    const req = httpTestingController.expectOne('http://103.74.254.157:9003/income/id/1');
-    expect(req.request.method).toEqual('GET');
+    const req = httpTestingController.expectOne(expectedUrl);
 
-
+    expect(req.request.method).toEqual("GET");
   });
-
-
 });
