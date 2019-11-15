@@ -9,7 +9,7 @@
 
   <ng-template #template>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Modal</h4>
+      <h4 class="modal-title pull-left">เพิ่มรายรับ</h4>
       <button
         type="button"
         class="close pull-right"
@@ -20,18 +20,24 @@
       </button>
     </div>
     <div class="modal-body">
-      <form>
-          <label>
-              วันที่ <input type="text">
-            </label>
-            <label>
-              ประเภท
-              <select>
+      <form [formGroup]="incomeForm" (ngSubmit)="onSubmit(incomeForm)">
+          <div class="form-group">
+            <input formControlName="date" placeholder="วันที่" class="form-control">
+          </div>
+          
+          <div class="form-group">
+            <select id="incomeGroupId" formControlName="incomeGroupId" class="form-control">
+                <option value="" selected>กรุณาเลือกประเภทเงินเดือน</option>
+                <!-- <option *ngFor="let c of countries" [value]="c" >{{ c }}</option> -->
                 <option value="1">เงินเดือน</option>
-              </select>
-            </label>
-        <button type="button" class="btn btn-primary">ตกลง</button>
-      </form>
+            </select> 
+          </div>
+          
+          <div class="form-group">
+              <input formControlName="amount" placeholder="จำนวนเงิน" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary">ตกลง</button>
+        </form>
     </div>
   </ng-template>
 

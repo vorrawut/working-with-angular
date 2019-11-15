@@ -4,6 +4,7 @@ import { Label, MultiDataSet } from 'ng2-charts';
 import { Income } from 'src/app/models/income/income';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { IncomeService } from 'src/app/services/income/income.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-income',
@@ -20,14 +21,25 @@ export class IncomeComponent implements OnInit {
   public doughnutChartType: ChartType = 'doughnut';
   modalRef: BsModalRef;
   income: Income[];
+  incomeForm: FormGroup;
 
   constructor(
     private modalService: BsModalService,
-    private incomeService: IncomeService
+    private incomeService: IncomeService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
     this.getIncomesByUserId();
+    this.incomeForm = this.fb.group({
+      date: '',
+      amount: '',
+      incomeGroupId: ''
+    });
+  }
+
+  onSubmit(form: FormGroup) {
+    console.log(form.value);
   }
 
   private getIncomesByUserId() {
