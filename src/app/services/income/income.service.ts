@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Income } from 'src/app/models/income/income';
+import { Income, IncomeRequest } from 'src/app/models/income/income';
 import { IncomeGroup } from 'src/app/models/income-group';
 
 @Injectable({
@@ -17,5 +17,9 @@ export class IncomeService {
 
   getIncomeGroup(): Observable<IncomeGroup[]> {
     return this.http.get<IncomeGroup[]>(`${this.serverURL}/income/group`);
+  }
+
+  saveIncome(data: IncomeRequest) {
+    return this.http.post(`${this.serverURL}/income`, data);
   }
 }

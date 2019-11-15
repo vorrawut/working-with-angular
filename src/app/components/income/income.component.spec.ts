@@ -99,4 +99,20 @@ describe('IncomeComponent', () => {
       expect(component.incomeGroup).toBe(expectedIncomeGroup);
     });
   });
+
+  it('should set empty in date form', () => {
+    component.ngOnInit();
+    expect(component.incomeForm.controls.date.value).toBe('');
+  });
+
+  it('should set empty in amount form', () => {
+    component.ngOnInit();
+    expect(component.incomeForm.controls.amount.value).toBe('');
+  });
+
+  it('should set empty in incomeGroupId form', () => {
+    component.ngOnInit();
+    expect(component.incomeForm.controls.incomeGroupId.value).toBe('');
+  });
+
 });

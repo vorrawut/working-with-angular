@@ -5,3 +5,12 @@ export class Income {
   amount: number;
   date: string;
 }
+
+export class IncomeRequest {
+  userId: number;
+  incomeGroupId: number;
+  amount: number;
+  date: string;
+}
+
+

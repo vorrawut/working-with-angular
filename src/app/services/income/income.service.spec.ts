@@ -6,6 +6,7 @@ import {
   HttpClientTestingModule,
   HttpTestingController
 } from '@angular/common/http/testing';
+import { IncomeRequest } from 'src/app/models/income/income';
 
 
 describe('IncomeService', () => {
@@ -38,5 +39,19 @@ describe('IncomeService', () => {
     const req = httpTestingController.expectOne(`${service.serverURL}/income/group`);
 
     expect(req.request.method).toEqual('GET');
+  });
+
+  it('should call GET method of save income api', () => {
+    const data = {
+      userId: 13,
+      incomeGroupId: 1,
+      amount: 100,
+      date: '10/12/2019'
+    } as IncomeRequest;
+    service.saveIncome(data).subscribe();
+
+    const req = httpTestingController.expectOne(`${service.serverURL}/income`);
+
+    expect(req.request.method).toEqual('POST');
   });
 });
