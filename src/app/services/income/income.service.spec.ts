@@ -2,12 +2,19 @@ import { TestBed } from '@angular/core/testing';
 
 import { IncomeService } from './income.service';
 
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
 describe('IncomeService', () => {
   let service: IncomeService;
+  let httpTestingController: HttpTestingController;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule]
+    });
     service = TestBed.inject(IncomeService);
+    httpTestingController = TestBed.get(HttpTestingController);
+
   });
 
   it('should be created', () => {
@@ -19,6 +26,16 @@ describe('IncomeService', () => {
     const incomeUrl = service.getIncomeByUserIdUrl;
 
     expect(incomeUrl).toBe('http://103.74.254.157:9003/income/id/1');
+
+  });
+
+  it('should call GET method', () => {
+
+    service.getIncomeByUserId().subscribe();
+
+    const req = httpTestingController.expectOne('http://103.74.254.157:9003/income/id/1');
+    expect(req.request.method).toEqual('GET');
+
 
   });
 

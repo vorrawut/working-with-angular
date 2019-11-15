@@ -22,14 +22,9 @@ export class IncomeComponent implements OnInit {
   modalRef: BsModalRef;
   income: Income[];
 
-  constructor(private modalService: BsModalService, private http: HttpClient) {}
+  constructor(private modalService: BsModalService) {}
 
   ngOnInit() {
-
-    this.http.get('http://103.74.254.157:9003/income/id/1')
-    .subscribe( d => {
-      console.log(d);
-    });
 
     this.income = [
       {
