@@ -7,7 +7,7 @@ import { IncomeComponent } from './components/income/income.component';
 import { OutcomeComponent } from './components/outcome/outcome.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AddIncomeComponent } from './components/income/add-income/add-income.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import { AddIncomeComponent } from './components/income/add-income/add-income.co
     BrowserModule,
     AppRoutingModule,
     ChartsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

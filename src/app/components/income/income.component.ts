@@ -3,6 +3,7 @@ import { ChartType } from 'chart.js';
 import { Label, MultiDataSet } from 'ng2-charts';
 import { Income } from 'src/app/models/income/income';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-income',
@@ -21,9 +22,15 @@ export class IncomeComponent implements OnInit {
   modalRef: BsModalRef;
   income: Income[];
 
-  constructor(private modalService: BsModalService) {}
+  constructor(private modalService: BsModalService, private http: HttpClient) {}
 
   ngOnInit() {
+
+    this.http.get('http://103.74.254.157:9003/income/id/1')
+    .subscribe( d => {
+      console.log(d);
+    });
+
     this.income = [
       {
         id: '1',
