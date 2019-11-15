@@ -5,6 +5,7 @@ import { Income } from 'src/app/models/income/income';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { IncomeService } from 'src/app/services/income/income.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { IncomeGroup } from 'src/app/models/income-group';
 
 @Component({
   selector: 'app-income',
@@ -21,6 +22,7 @@ export class IncomeComponent implements OnInit {
   public doughnutChartType: ChartType = 'doughnut';
   modalRef: BsModalRef;
   income: Income[];
+  incomeGroup: IncomeGroup[];
   incomeForm: FormGroup;
 
   constructor(
@@ -31,6 +33,7 @@ export class IncomeComponent implements OnInit {
 
   ngOnInit() {
     this.getIncomesByUserId();
+    this.getIncomeGroup();
     this.incomeForm = this.fb.group({
       date: '',
       amount: '',
@@ -40,6 +43,12 @@ export class IncomeComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     console.log(form.value);
+  }
+
+  private getIncomeGroup() {
+    this.incomeService.getIncomeGroup().subscribe(incomeGroup => {
+      this.incomeGroup = incomeGroup;
+    });
   }
 
   private getIncomesByUserId() {

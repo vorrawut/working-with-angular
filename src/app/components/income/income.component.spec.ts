@@ -6,6 +6,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
 import { Income } from 'src/app/models/income/income';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IncomeGroup } from 'src/app/models/income-group';
 
 describe('IncomeComponent', () => {
   let component: IncomeComponent;
@@ -75,6 +76,27 @@ describe('IncomeComponent', () => {
       component.ngOnInit();
 
       expect(component.income).toBe(expectedIncomes);
+    });
+  });
+
+  describe('get income group service', () => {
+    let expectedIncomeGroup: IncomeGroup[];
+    beforeEach(() => {
+      expectedIncomeGroup = [{
+        id: 1,
+        name: 'เงินเดือน'
+      }];
+      spyOn(incomeService, 'getIncomeGroup').and.returnValue(of(expectedIncomeGroup));
+    });
+
+    it('should call get income group when call ngOnInit method', () => {
+      component.ngOnInit();
+      expect(incomeService.getIncomeGroup).toHaveBeenCalled();
+    });
+
+    it('should set income group when call service is success', () => {
+      component.ngOnInit();
+      expect(component.incomeGroup).toBe(expectedIncomeGroup);
     });
   });
 });
