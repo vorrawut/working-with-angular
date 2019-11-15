@@ -80,7 +80,7 @@
         <tbody>
           <tr *ngFor="let data of income">
             <th scope="row">{{ data.id }}</th>
-            <td>{{ data.date }}</td>
+            <td>{{ data.date | date:'d/M/yyyy' }}</td>
             <td>{{ data.incomeGroupName }}</td>
             <td>{{ data.amount }}</td>
             <td>
