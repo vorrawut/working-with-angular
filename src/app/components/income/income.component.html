@@ -2,9 +2,9 @@
   <h2>รายรับ</h2>
 
   <div class="card-container">
-      <div class="card card-small" (click)="openModal(template)">
-          เพิ่มรายรับ
-      </div>
+    <div class="card card-small" (click)="openModal(template)">
+      เพิ่มรายรับ
+    </div>
   </div>
 
   <ng-template #template>
@@ -21,23 +21,37 @@
     </div>
     <div class="modal-body">
       <form [formGroup]="incomeForm" (ngSubmit)="onSubmit(incomeForm)">
-          <div class="form-group">
-            <input formControlName="date" placeholder="วันที่" class="form-control">
+        <div class="form-group">
+          <div class="col-xs-12 col-12 col-md-4 form-group row">
+            <input
+              type="text"
+              placeholder="วันที่"
+              class="form-control"
+              bsDatepicker/>
           </div>
-          
-          <div class="form-group">
-            <select id="incomeGroupId" formControlName="incomeGroupId" class="form-control">
-                <option value="" selected>กรุณาเลือกประเภทเงินเดือน</option>
-                <!-- <option *ngFor="let c of countries" [value]="c" >{{ c }}</option> -->
-                <option value="1">เงินเดือน</option>
-            </select> 
-          </div>
-          
-          <div class="form-group">
-              <input formControlName="amount" placeholder="จำนวนเงิน" class="form-control">
-          </div>
-          <button type="submit" class="btn btn-primary">ตกลง</button>
-        </form>
+        </div>
+
+        <div class="form-group">
+          <select
+            id="incomeGroupId"
+            formControlName="incomeGroupId"
+            class="form-control"
+          >
+            <option value="" selected>กรุณาเลือกประเภทเงินเดือน</option>
+            <!-- <option *ngFor="let c of countries" [value]="c" >{{ c }}</option> -->
+            <option value="1">เงินเดือน</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <input
+            formControlName="amount"
+            placeholder="จำนวนเงิน"
+            class="form-control"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">ตกลง</button>
+      </form>
     </div>
   </ng-template>
 
@@ -65,10 +79,10 @@
         </thead>
         <tbody>
           <tr *ngFor="let data of income">
-            <th scope="row">{{data.id}}</th>
-            <td>{{data.date}}</td>
-            <td>{{data.incomeGroupName}}</td>
-            <td>{{data.amount}}</td>
+            <th scope="row">{{ data.id }}</th>
+            <td>{{ data.date }}</td>
+            <td>{{ data.incomeGroupName }}</td>
+            <td>{{ data.amount }}</td>
             <td>
               <button type="button" class="btn btn-primary">แก้ไข</button>
               <button type="button" class="btn btn-danger">ลบ</button>
