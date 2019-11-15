@@ -44,9 +44,9 @@ export class IncomeComponent implements OnInit {
   onSubmit() {
     const makeData = {
       userId: 13,
-      incomeGroupId: this.incomeForm.controls.incomeGroupId.value,
-      amount: this.incomeForm.controls.amount.value,
-      date: this.incomeForm.controls.date.value
+      incomeGroupId: Number(this.incomeForm.controls.incomeGroupId.value),
+      amount: Number(this.incomeForm.controls.amount.value),
+      date: new Date(this.incomeForm.controls.date.value).toISOString()
     } as IncomeRequest;
     this.incomeService.saveIncome(makeData).subscribe(_ => {
       console.log('success');
