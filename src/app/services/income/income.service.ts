@@ -5,5 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class IncomeService {
 
+  getIncomeByUserIdUrl = 'http://103.74.254.157:9003/income/id/1'
+
   constructor() { }
 }
