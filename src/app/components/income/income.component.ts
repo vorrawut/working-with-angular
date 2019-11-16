@@ -6,6 +6,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { IncomeService } from 'src/app/services/income/income.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { IncomeGroup } from 'src/app/models/income-group';
+import { debounceTime, distinctUntilChanged, switchMap, tap, filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-income',
@@ -24,6 +25,7 @@ export class IncomeComponent implements OnInit {
   income: Income[];
   incomeGroup: IncomeGroup[];
   incomeForm: FormGroup;
+  searchForm: FormGroup;
 
   constructor(
     private modalService: BsModalService,
@@ -34,10 +36,24 @@ export class IncomeComponent implements OnInit {
   ngOnInit() {
     this.getIncomesByUserId();
     this.getIncomeGroup();
+    this.createForm();
+    this.searchForm.get('search').valueChanges.pipe(
+      filter(v => v.length !== 0),
+      debounceTime(500),
+      distinctUntilChanged(),
+      map(v => this.incomeService.findIncome(v))
+    ).subscribe(v => console.log(v));
+  }
+
+  createForm() {
+    this.searchForm = this.fb.group({
+      search: ''
+    });
     this.incomeForm = this.fb.group({
       date: '',
       amount: '',
-      incomeGroupId: ''
+      incomeGroupId: '',
+      search: ''
     });
   }
 

@@ -22,4 +22,8 @@ export class IncomeService {
   saveIncome(data: IncomeRequest) {
     return this.http.post(`${this.serverURL}/income`, data);
   }
+
+  findIncome(search: string): Observable<Income[]> {
+    return this.http.get<Income[]>(`${this.serverURL}/income/user-id/1/search/${search}`);
+  }
 }
