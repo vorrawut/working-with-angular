@@ -4,7 +4,7 @@ import { Label, MultiDataSet } from 'ng2-charts';
 import { Income, IncomeRequest } from 'src/app/models/income/income';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { IncomeService } from 'src/app/services/income/income.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { IncomeGroup } from 'src/app/models/income-group';
 import { debounceTime, distinctUntilChanged, switchMap, tap, filter, map } from 'rxjs/operators';
 
@@ -25,7 +25,7 @@ export class IncomeComponent implements OnInit {
   income: Income[];
   incomeGroup: IncomeGroup[];
   incomeForm: FormGroup;
-  searchForm: FormGroup;
+  searchText: FormControl;
 
   constructor(
     private modalService: BsModalService,
@@ -37,7 +37,7 @@ export class IncomeComponent implements OnInit {
     this.getIncomesByUserId();
     this.getIncomeGroup();
     this.createForm();
-    this.searchForm.get('search').valueChanges.pipe(
+    this.searchText.valueChanges.pipe(
       filter(v => v.length !== 0),
       debounceTime(500),
       distinctUntilChanged(),
@@ -45,12 +45,11 @@ export class IncomeComponent implements OnInit {
     ).subscribe(v => {
       this.income = v;
     });
+
   }
 
   createForm() {
-    this.searchForm = this.fb.group({
-      search: ''
-    });
+    this.searchText = new FormControl('');
     this.incomeForm = this.fb.group({
       date: '',
       amount: '',

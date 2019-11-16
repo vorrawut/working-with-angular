@@ -8,9 +8,7 @@
   </div>
 
   <div>
-    <form [formGroup]="searchForm">
-        <input formControlName="search" placeholder="ค้นหา" class="form-control"/>
-    </form>
+    <input [formControl]="searchText" name="searchText" placeholder="ค้นหา" class="form-control"/>
   </div>
  
   <ng-template #template>

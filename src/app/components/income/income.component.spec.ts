@@ -115,11 +115,6 @@ describe('IncomeComponent', () => {
     expect(component.incomeForm.controls.incomeGroupId.value).toBe('');
   });
 
-  it('should set empty in search form', () => {
-    component.ngOnInit();
-    expect(component.searchForm.controls.search.value).toBe('');
-  });
-
   it('should update from when form changes', (() => {
     const data = {
       date: '10/12/2019',
@@ -132,12 +127,50 @@ describe('IncomeComponent', () => {
     expect(component.incomeForm.value).toEqual(data);
   }));
 
-  it('should update from when form changes of search text', (() => {
-    const textSearch = {
-      search: 'ราย'
-    };
-    component.searchForm.controls.search.setValue(textSearch.search);
-    expect(component.searchForm.value).toEqual(textSearch);
+  it('should call find income when search text', fakeAsync(() => {
+    spyOn(incomeService, 'findIncome').and.callThrough();
+    component.searchText.setValue('ราย');
+    tick(500);
+    expect(incomeService.findIncome).toHaveBeenCalledWith('ราย');
+  }));
+
+  it('should set data in income when call find income service is success', fakeAsync(() => {
+    component.income = [];
+    const expectedIncomes = [
+      {
+        id: '1',
+        incomeGroupId: 1,
+        incomeNameGroupId: 'งานประจำ',
+        date: '14/11/2019',
+        amount: 150000
+      },
+      {
+        id: '2',
+        incomeGroupId: 2,
+        incomeNameGroupId: 'งานเสริม',
+        date: '14/10/2019',
+        amount: 150000
+      },
+      {
+        id: '3',
+        incomeGroupId: 3,
+        incomeNameGroupId: 'รายได้จากการลงทุน',
+        date: '14/10/2019',
+        amount: 150000
+      }
+    ];
+    spyOn(incomeService, 'findIncome').and.returnValue(of(expectedIncomes));
+    component.searchText.setValue('ราย');
+    tick(500);
+    expect(component.income).toBe(expectedIncomes);
+  }));
+
+  it('should call getIncomeByUserId when search text is empty', fakeAsync(() => {
+    spyOn(incomeService, 'getIncomeByUserId').and.returnValue(of([]));
+    component.searchText.setValue('');
+    tick(500);
+    component.ngOnInit();
+    expect(incomeService.getIncomeByUserId).toHaveBeenCalled();
   }));
 
   it('should call save income service with data for save when call onSubmit', () => {
@@ -159,5 +192,6 @@ describe('IncomeComponent', () => {
     component.onSubmit();
     expect(incomeService.saveIncome).toHaveBeenCalledWith(makeData);
   });
+
 
 });
