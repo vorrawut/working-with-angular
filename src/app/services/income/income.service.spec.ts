@@ -41,6 +41,14 @@ describe('IncomeService', () => {
     expect(req.request.method).toEqual('GET');
   });
 
+  it('should call GET method of find income group api', () => {
+    service.findIncome('ราย').subscribe();
+
+    const req = httpTestingController.expectOne(`${service.serverURL}/income/user-id/1/search/ราย`);
+
+    expect(req.request.method).toEqual('GET');
+  });
+
   it('should call GET method of save income api', () => {
     const data = {
       userId: 13,

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, fakeAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { IncomeComponent } from './income.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { IncomeService } from 'src/app/services/income/income.service';
@@ -115,7 +115,12 @@ describe('IncomeComponent', () => {
     expect(component.incomeForm.controls.incomeGroupId.value).toBe('');
   });
 
-  it('should update from when form changes', fakeAsync(() => {
+  it('should set empty in search form', () => {
+    component.ngOnInit();
+    expect(component.searchForm.controls.search.value).toBe('');
+  });
+
+  it('should update from when form changes', (() => {
     const data = {
       date: '10/12/2019',
       amount: 100,
@@ -127,10 +132,18 @@ describe('IncomeComponent', () => {
     expect(component.incomeForm.value).toEqual(data);
   }));
 
+  it('should update from when form changes of search text', (() => {
+    const textSearch = {
+      search: 'ราย'
+    };
+    component.searchForm.controls.search.setValue(textSearch.search);
+    expect(component.searchForm.value).toEqual(textSearch);
+  }));
+
   it('should call save income service with data for save when call onSubmit', () => {
     spyOn(incomeService, 'saveIncome').and.returnValue(of());
     const data = {
-      date: '10/12/2019',
+      date: '2019-10-11T17:00:00.000Z',
       amount: 100,
       incomeGroupId: 1
     };
