@@ -18,7 +18,7 @@ describe('IncomeService', () => {
       imports: [HttpClientTestingModule]
     });
     service = TestBed.inject(IncomeService);
-    httpTestingController = TestBed.get(HttpTestingController);
+    httpTestingController = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {

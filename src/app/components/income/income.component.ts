@@ -41,8 +41,10 @@ export class IncomeComponent implements OnInit {
       filter(v => v.length !== 0),
       debounceTime(500),
       distinctUntilChanged(),
-      map(v => this.incomeService.findIncome(v))
-    ).subscribe(v => console.log(v));
+      switchMap(v => this.incomeService.findIncome(v))
+    ).subscribe(v => {
+      this.income = v;
+    });
   }
 
   createForm() {
