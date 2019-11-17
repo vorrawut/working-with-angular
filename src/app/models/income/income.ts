@@ -1,7 +1,7 @@
 export class Income {
   id: string;
   incomeGroupId: number;
-  incomeNameGroupId: string;
+  incomeGroupName: string;
   amount: number;
   date: string;
 }

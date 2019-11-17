@@ -41,21 +41,21 @@ describe('IncomeComponent', () => {
         {
           id: '1',
           incomeGroupId: 1,
-          incomeNameGroupId: 'งานประจำ',
+          incomeGroupName: 'งานประจำ',
           date: '14/11/2019',
           amount: 150000
         },
         {
           id: '2',
           incomeGroupId: 2,
-          incomeNameGroupId: 'งานเสริม',
+          incomeGroupName: 'งานเสริม',
           date: '14/10/2019',
           amount: 150000
         },
         {
           id: '3',
           incomeGroupId: 3,
-          incomeNameGroupId: 'รายได้จากการลงทุน',
+          incomeGroupName: 'รายได้จากการลงทุน',
           date: '14/10/2019',
           amount: 150000
         }
@@ -140,21 +140,21 @@ describe('IncomeComponent', () => {
       {
         id: '1',
         incomeGroupId: 1,
-        incomeNameGroupId: 'งานประจำ',
+        incomeGroupName: 'งานประจำ',
         date: '14/11/2019',
         amount: 150000
       },
       {
         id: '2',
         incomeGroupId: 2,
-        incomeNameGroupId: 'งานเสริม',
+        incomeGroupName: 'งานเสริม',
         date: '14/10/2019',
         amount: 150000
       },
       {
         id: '3',
         incomeGroupId: 3,
-        incomeNameGroupId: 'รายได้จากการลงทุน',
+        incomeGroupName: 'รายได้จากการลงทุน',
         date: '14/10/2019',
         amount: 150000
       }
@@ -193,5 +193,9 @@ describe('IncomeComponent', () => {
     expect(incomeService.saveIncome).toHaveBeenCalledWith(makeData);
   });
 
-
+  it('should call loadIncomesByUserId', () => {
+    spyOn(incomeService, 'loadIncomesByUserId');
+    component.ngOnInit();
+    expect(incomeService.loadIncomesByUserId).toHaveBeenCalled();
+  });
 });

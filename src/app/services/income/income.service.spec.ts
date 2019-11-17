@@ -7,6 +7,7 @@ import {
   HttpTestingController
 } from '@angular/common/http/testing';
 import { IncomeRequest } from 'src/app/models/income/income';
+import { of } from 'rxjs';
 
 
 describe('IncomeService', () => {
@@ -62,4 +63,46 @@ describe('IncomeService', () => {
 
     expect(req.request.method).toEqual('POST');
   });
+
+  // it('should set data in store when call getIncomeByUserId is success', () => {
+  //   service.incomesStore$ = of([
+  //     {
+  //       id: '1',
+  //       incomeGroupId: 1,
+  //       incomeGroupName: 'งานประจำ',
+  //       date: '14/11/2019',
+  //       amount: 150000
+  //     }]);
+
+  //   const expectedIncomes = [
+  //     {
+  //       id: '1',
+  //       incomeGroupId: 1,
+  //       incomeGroupName: 'งานประจำ',
+  //       date: '14/11/2019',
+  //       amount: 150000
+  //     },
+  //     {
+  //       id: '2',
+  //       incomeGroupId: 2,
+  //       incomeGroupName: 'งานเสริม',
+  //       date: '14/10/2019',
+  //       amount: 150000
+  //     },
+  //     {
+  //       id: '3',
+  //       incomeGroupId: 3,
+  //       incomeGroupName: 'รายได้จากการลงทุน',
+  //       date: '14/10/2019',
+  //       amount: 150000
+  //     }
+  //   ];
+  //   service.loadIncomesByUserId();
+
+  //   const request = httpTestingController.expectOne(`${service.serverURL}/income/id/1`);
+  //   request.flush(expectedIncomes);
+  //   httpTestingController.verify();
+
+  //   expect(service.incomesStore$).toEqual(of(expectedIncomes));
+  // });
 });

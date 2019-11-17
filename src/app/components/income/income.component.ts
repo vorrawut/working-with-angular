@@ -29,11 +29,12 @@ export class IncomeComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    private incomeService: IncomeService,
+    public incomeService: IncomeService,
     private fb: FormBuilder
   ) { }
 
   ngOnInit() {
+    this.incomeService.loadIncomesByUserId();
     this.getIncomesByUserId();
     this.getIncomeGroup();
     this.createForm();
